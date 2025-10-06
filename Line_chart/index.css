@@ -1,3 +1,29 @@
 .svg-container {
     background-color: #FFC988;
 }
+
+/* Typography: make chart text larger and more legible */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+h1 {
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 12px 0 8px;
+}
+
+svg {
+    font-family: inherit;
+}
+
+svg text {
+    font-size: 14px;
+    fill: #333333;
+}
+
+/* Optional helper if we add explicit axis label classes later */
+.axis-label {
+    font-size: 14px;
+    font-weight: 600;
+}
