@@ -29,8 +29,8 @@ function parseData(data) {
 }
 
 function drawChart(data) {
-    const svgWidth = 800, svgHeight = 400;
-    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    const svgWidth = 1000, svgHeight = 400;
+    const margin = { top: 20, right: 20, bottom: 50, left: 50 };
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
     
@@ -52,15 +52,16 @@ function drawChart(data) {
         .y(d => y(d.value));
 
     const formatTime = d3.timeFormat("%-m/%-d");
-        
-    x.domain(d3.extent(data, d => d.date ));
-    y.domain(d3.extent(data, d => d.value ));
+    
+    const [minDate, maxDate] = d3.extent(data, d => d.date)
+    x.domain([d3.timeDay.offset(minDate, -1), maxDate]);
+    y.domain([d3.min(data, d => d.value) - 1.5, d3.max(data, d => d.value) + 1.5]);
     
     g.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x).tickFormat(formatTime))
-        .select(".domain")
-        .remove();
+        .select(".domain");
+        
     
     g.append("g")
         .call(d3.axisLeft(y))
@@ -70,7 +71,7 @@ function drawChart(data) {
         .attr("y", 6)
         .attr("dy", "0.71em")
         .attr("text-anchor", "end")
-        .text("Degree (°C)");
+        .text("Temperature (°C)");
     
     g.append("path")
         .datum(data)
