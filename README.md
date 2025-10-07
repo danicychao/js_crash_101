@@ -20,5 +20,11 @@ Main procedures of making charts in JS:
     - json: data.[STRUCTURE].[LOCATION]
     - txt: `.split('\n')` then `.split(',')` (it depends). Multiple `map` and multiple `return`
 
-3.
+3. Plot data: Create container class in html for chart; write plotting function; inside the plotting function, set size of plotting area, create svg object with `d3.select`,
+   use `svg.append` to plot data and axis.
+
+    - `d3.scaleTime`, `d3.scaleLiner`, `d3.scalePoint`, `d3.scaleBand`
+    - `d3.line`, `svg.selectAll('.dot').data(data)`
+
+   Since writing plotting function is JS is tedious, the better way to do it is asking AI to first write the plotting function according to the prompts (chart type, data format), and then to tune the parameters for size, color, labels, and etc.. Using AI to set the CSS file is also highly recommended!
 
